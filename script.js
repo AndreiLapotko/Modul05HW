@@ -6,7 +6,7 @@ const deleteButton = document.getElementById("delete");
 const updateButton = document.getElementById("update");
 
 function addTask() {
-  let name = prompt("Введите название задачи!");
+  let name = prompt("Введите название задачи!", "");
   if (name) {
     if (doesTaskExist(name)) {
       alert("Задача с таким названием уже существует");
@@ -51,52 +51,24 @@ function changeStatus(name) {
 }
 
 function handleChangeStatusButtonClick() {
-  let name = prompt("Для смены статуса, введите название задачи!");
+  let name = prompt("Для смены статуса, введите название задачи!", "");
   changeStatus(name);
 }
 
 function handleDelButtonClick() {
-  let name = prompt("Для удаления, введите название задачи!");
+  let name = prompt("Для удаления, введите название задачи!", "");
   deleteTask(name);
 }
 
 function handleUpdateButtonClick() {
   let array = tasksList;
-  const html = array
-    .map(
-      (item) =>
-        `<li>${item.name} &emsp;&emsp;${
-          item.completed ? "выполнено" : "не выполнено"
-        }</li>`
-    )
-    .join("");
+  const html = array.map((item) => `<li>${item.name} &emsp;&emsp;${item.completed ? "выполнено" : "не выполнено"}</li>`).join("");
   document.querySelector("ol").innerHTML = html;
-  array.forEach((item) => {
-    console.log(
-      item.name + " " + (item.completed ? "выполнено" : "не выполнено")
-    );
-  });
+  // в ТЗ не указано куда направлять данные, поэтому вывел и на страницу и в консоль.
+  array.forEach((item) => {console.log(item.name + " " + (item.completed ? "выполнено" : "не выполнено"))});
 }
 
 addButton.addEventListener("click", addTask);
 changeStatusButton.addEventListener("click", handleChangeStatusButtonClick);
 deleteButton.addEventListener("click", handleDelButtonClick);
 updateButton.addEventListener("click", handleUpdateButtonClick);
-
-addTask("Выучить JavaScript");
-// // addTask("");
-// // debugger;
-addTask("Купить продукты");
-// // addTask("Купить продукты");
-// addTask("Сделать домашнее задание");
-
-console.log(tasksList);
-
-// deleteTask("Сделать домашнее задание");
-// // deleteTask(prompt("Для удаления, введите название задачи!"));
-// console.log(tasksList);
-
-// changeStatus("Купить продукты");
-// console.log(tasksList);
-
-// renderTasks(tasksList);
