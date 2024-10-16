@@ -16,7 +16,8 @@ function addTask() {
         completed: false,
       };
       tasksList.push(newTask);
-      alert("Задача успешно добавлена, обновите список!");
+      // alert("Задача успешно добавлена, обновите список!");
+      updateButton.click();
     }
   } else {
     alert("Вы забыли назвать задачу!");
@@ -36,7 +37,8 @@ function deleteTask(name) {
     alert("Задачи с таким названием нет в списке!");
   } else {
     tasksList = tasksList.filter((item) => item.name !== name);
-    alert("Задача успешно удалена, обновите список!");
+    // alert("Задача успешно удалена, обновите список!");
+    updateButton.click();
   }
 }
 
@@ -46,7 +48,8 @@ function changeStatus(name) {
   } else {
     tasksList[tasksList.findIndex((item) => item.name == name)].completed =
       !tasksList[tasksList.findIndex((item) => item.name == name)].completed;
-    alert("Статус задачи успешно изменен, обновите список!");
+    // alert("Статус задачи успешно изменен, обновите список!");
+    updateButton.click();
   }
 }
 
